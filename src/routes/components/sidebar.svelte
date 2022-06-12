@@ -46,14 +46,14 @@
 <div class="container max-w-3xl bg-blue-400 h-screen w-fit sm:text-2xl md:text-4xl">
 	<div class="p-8 flex-col justify-between content-between flex h-full">
 		<div>
-		{#each menu as { name, path }, i}
-			<a href={path} class="">
-				<div class="flex flex-col">
-					<h1 class="hover:bg-white ">{name}</h1>
-				</div>
-			</a>
-		{/each}
-	</div>
+			{#each menu as { name, path }, i}
+				<a href={path} class="">
+					<div class="flex flex-col">
+						<h1 class="hover:bg-white ">{name}</h1>
+					</div>
+				</a>
+			{/each}
+		</div>
 		<div class="">
 			<button on:click={HandleLogout}>Logout</button>
 		</div>

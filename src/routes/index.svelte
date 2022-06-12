@@ -5,12 +5,12 @@
 	import { goto } from '$app/navigation';
 	import { apiurl } from '../stores';
 
-	let nama ='';
+	let nama = '';
 	onMount(async () => {
 		try {
 			const x = Cookies.get('token');
-			const response = await axios.get(apiurl+'/users/profile',{
-				headers: {Authorization: x}
+			const response = await axios.get(apiurl + '/users/profile', {
+				headers: { Authorization: x }
 			});
 			nama = response.data.nama_user;
 		} catch (error) {

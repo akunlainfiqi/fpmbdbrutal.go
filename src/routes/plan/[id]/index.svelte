@@ -1,24 +1,25 @@
 <script>
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { apiurl } from '../../../stores'
+	import { apiurl } from '../../../stores';
 	import Cookies from 'js-cookie';
 	import axios from 'axios';
-	const id = isNaN($page.params.id)? '':$page.params.id;
+	const id = isNaN($page.params.id) ? '' : $page.params.id;
 
-	let data={},dest=[];
-	onMount(async()=>{
-		try{
-			const response = await axios.get(apiurl + '/travelplan/' + id,{
-				headers:{
+	let data = {},
+		dest = [];
+	onMount(async () => {
+		try {
+			const response = await axios.get(apiurl + '/travelplan/' + id, {
+				headers: {
 					Authorization: Cookies.get('token')
 				}
 			});
 			data = response.data.detail_plan[0];
 			dest = response.data.dest_plan;
 			console.log(dest);
-		} catch(e){
-			console.log(e)
+		} catch (e) {
+			console.log(e);
 		}
 	});
 </script>
@@ -31,7 +32,7 @@
 
 	<div class="container flex flex-col">
 		<h1 class="text-6xl text-blue-500 font-bold">Destinasi</h1>
-		{#each dest as {id_destination,nama_destination,alamat_destination,country_id_country,status },i }
+		{#each dest as { id_destination, nama_destination, alamat_destination, country_id_country, status }, i}
 			<div>
 				<h1 class="font-bold text-4xl">{nama_destination}</h1>
 				<h2 class="text-4xl">{alamat_destination}</h2>
