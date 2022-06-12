@@ -16,10 +16,8 @@
 				email,
 				password
 			});
-			console.log(data.token);
-			$user = data;
 			Cookies.set('token', data.token);
-			goto('/');
+			location.reload();
 		} catch (error) {
 			console.log(error);
 			if (error.response.status != 201) {
@@ -33,16 +31,10 @@
 	onMount(async () => {
 		try {
 			const x = Cookies.get('token');
-			console.log(x);
-			const response = await axios.get(apiurl + '/users/profile/', {
-				headers: {
-					Authorization: x
-				}
-			});
-			goto('/');
-			$user = response.data.user;
-		} catch (e) {
-			console.log(e);
+			if (x != null) goto('/');
+		} catch (error) {
+			Cookies.remove('token');
+			console.log(error);
 		}
 	});
 </script>
